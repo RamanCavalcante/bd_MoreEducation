@@ -6,6 +6,8 @@ import com.example.project.rest.api.repository.RepositoryAluno;
 import com.example.project.rest.api.repository.RepositoryProfessor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,20 +50,20 @@ public class LoginController {
     private RepositoryProfessor repositoryProfessor;
 
   @GetMapping(value =  "login")
-  public String login(@RequestBody Usuario usuario) {
+  public ResponseEntity<?> login(@RequestBody Usuario usuario) {
     Professor usuarioProfessor = repositoryProfessor.findById(usuario.getMatricula());
 
     if(usuarioProfessor != null){
       if(usuarioProfessor.getSenha().equals(usuario.getSenha())) {
-        return "Professor logado com sucesso";
+         return new ResponseEntity<>(repositoryProfessor.findById(usuario.getMatricula()), HttpStatus.OK);
       }
      } else {
        Aluno usuariAluno = repositoryAluno.findById(usuario.getMatricula());
       if(usuariAluno.getSenha().equals(usuario.getSenha())) {
-        return "Aluno logado com sucesso";
+         return new ResponseEntity<>(repositoryAluno.findById(usuario.getMatricula()), HttpStatus.OK);
       }
      }
-    return "Usuario não existe";
+     return new ResponseEntity<>("Usuario não existe", HttpStatus.OK);
   }
 
 }
