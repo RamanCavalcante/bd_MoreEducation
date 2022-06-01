@@ -1,6 +1,10 @@
 package com.example.project.rest.api.controller;
 
+import java.util.ArrayList;
+
+import com.example.project.rest.api.model.Aluno;
 import com.example.project.rest.api.model.Turma;
+import com.example.project.rest.api.repository.RepositoryAluno;
 import com.example.project.rest.api.repository.RepositoryTurma;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +21,7 @@ public class TurmaController {
     
     @Autowired
     private RepositoryTurma repository;
+    private RepositoryAluno repositoryAluno;
 
     @GetMapping(path = "/all")
     public Iterable<Turma> listaTurma() {
@@ -29,8 +34,28 @@ public class TurmaController {
         return repository.findById(id);
     }
 
+    @GetMapping(path = "/{id}")
+    public ArrayList<Aluno> consultarAlunosDaTurma(@PathVariable("id") int id){
+        
+        Iterable<Aluno> alunoList = repositoryAluno.findAll();
+        ArrayList<Aluno> listaDaTurma = new ArrayList<>();
+
+        Turma turma = repository.findById(id);
+        for(Aluno a: alunoList){
+            
+            if(a.getId_turma()==turma.getId()){
+                System.out.println(a.getId_turma());
+                listaDaTurma.add(a);
+            }
+        }
+
+        return listaDaTurma;
+    }
+
     @PostMapping(path = "/cadastrar")
     public Turma cadastrar(@RequestBody Turma saveTurma){
         return repository.save(saveTurma);
     }
+
+
 } 
