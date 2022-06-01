@@ -1,42 +1,42 @@
 package com.example.project.rest.api.controller;
 
-import java.util.Optional;
-
 import com.example.project.rest.api.model.Aluno;
 import com.example.project.rest.api.repository.RepositoryAluno;
 
-import org.aspectj.weaver.ast.And;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping(value = "/api/aluno")
 public class AlunoController {
-    
-
 
     @Autowired
     private RepositoryAluno repository;
 
-    @GetMapping(path = "/api/aluno/{matricula}")
-    public ResponseEntity consultar(@PathVariable("matricula") int matricula){
-        return repository.findById(matricula)
-            .map(record -> ResponseEntity.ok().body(record))
-            .orElse(ResponseEntity.notFound().build());
+    @GetMapping(path = "/all")
+    public Iterable<Aluno> listaAluno() {
+        return repository.findAll();
     }
 
-    @PostMapping(path = "api/aluno/salvar")
-    public Aluno salvar(@RequestBody Aluno usuario){
+
+    @GetMapping(path = "/{matricula}")
+    public Aluno acharAluno(@PathVariable("matricula") int matricula){
+        return repository.findById(matricula);
+    }
+
+    @PostMapping(path = "/cadastrar")
+    public Aluno cadastrar(@RequestBody Aluno usuario){
         return repository.save(usuario);
     }
 
-    @GetMapping(path = "api/aluno/login")
+    @GetMapping(path = "/login")
     public void login(@RequestBody Aluno usuario){
-        Aluno usuarioAluno = repository.findById(usuario.getMatricula()).get();
+        Aluno usuarioAluno = repository.findById(usuario.getMatricula());
 
         if(usuarioAluno.getSenha().equals(usuario.getSenha())){
             System.out.println("Sucesso!!");
@@ -44,9 +44,4 @@ public class AlunoController {
             System.out.println("Acesso negado!!");
         }
     }
-
-    
-         
-    
-
 }

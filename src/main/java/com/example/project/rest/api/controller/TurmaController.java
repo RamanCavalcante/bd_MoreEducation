@@ -9,23 +9,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping(value = "/api/turma")
 public class TurmaController {
     
     @Autowired
     private RepositoryTurma repository;
 
-    @GetMapping(path = "api/turma/{id}")
-    public ResponseEntity consultar(@PathVariable("id") int id){
-        return repository.findById(id)
-        .map(record -> ResponseEntity.ok().body(record))
-        .orElse(ResponseEntity.notFound().build());
+    @GetMapping(path = "/all")
+    public Iterable<Turma> listaTurma() {
+        return repository.findAll();
     }
 
-    @PostMapping(path = "api/turma/salvar")
-    public Turma salvar(@RequestBody Turma saveTurma){
+    @GetMapping(path = "/{id}")
+    public Turma consultar(@PathVariable("id") int id){
+        return repository.findById(id);
+    }
+
+    @PostMapping(path = "/cadastrar")
+    public Turma cadastrar(@RequestBody Turma saveTurma){
         return repository.save(saveTurma);
     }
 } 

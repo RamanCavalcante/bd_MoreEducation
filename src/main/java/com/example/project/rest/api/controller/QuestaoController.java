@@ -1,5 +1,8 @@
 package com.example.project.rest.api.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.example.project.rest.api.model.Questao;
 import com.example.project.rest.api.repository.RepositoryQuestao;
 
@@ -9,11 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.bytebuddy.asm.MemberSubstitution.Substitution.Chain.Step.Resolution;
 
 @RestController
+@RequestMapping(value = "/api/questao")
 public class QuestaoController {
     
     @Autowired
@@ -27,7 +32,13 @@ public class QuestaoController {
         .orElse(ResponseEntity.notFound().build());   
     }
 
-    @PostMapping(path = "api/questao/salvar")
+    @GetMapping(path = "/all")
+    public Iterable<Questao> listaQuestao() {
+        System.out.println("Chamando todas as questoes");
+        return repository.findAll();
+    }
+
+    @PostMapping(path = "/salvar")
     public Questao salvar(@RequestBody Questao questao){
     
         return repository.save(questao);
