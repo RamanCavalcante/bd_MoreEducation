@@ -38,10 +38,10 @@ public class Professor {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    public byte getLevel() {
+    public byte getAcess() {
         return acess;
     }
-    public void setLevel(byte a) {
+    public void setAcess(byte a) {
         this.acess = a;
     }
  

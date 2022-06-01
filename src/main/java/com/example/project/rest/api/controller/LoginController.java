@@ -8,7 +8,9 @@ import com.example.project.rest.api.repository.RepositoryProfessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,6 +43,7 @@ class Usuario {
 
 @RestController
 @RequestMapping(value = "/api")
+@CrossOrigin
 public class LoginController {
 
   @Autowired
@@ -49,16 +52,16 @@ public class LoginController {
   @Autowired
     private RepositoryProfessor repositoryProfessor;
 
-  @GetMapping(value =  "login")
+  @PostMapping(value =  "/login")
   public ResponseEntity<?> login(@RequestBody Usuario usuario) {
     Professor usuarioProfessor = repositoryProfessor.findById(usuario.getMatricula());
+    Aluno usuariAluno = repositoryAluno.findById(usuario.getMatricula());
 
     if(usuarioProfessor != null){
       if(usuarioProfessor.getSenha().equals(usuario.getSenha())) {
          return new ResponseEntity<>(repositoryProfessor.findById(usuario.getMatricula()), HttpStatus.OK);
       }
-     } else {
-       Aluno usuariAluno = repositoryAluno.findById(usuario.getMatricula());
+     } else if(usuariAluno != null){
       if(usuariAluno.getSenha().equals(usuario.getSenha())) {
          return new ResponseEntity<>(repositoryAluno.findById(usuario.getMatricula()), HttpStatus.OK);
       }
