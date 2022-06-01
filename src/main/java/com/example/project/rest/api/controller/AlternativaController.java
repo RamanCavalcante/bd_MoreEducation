@@ -1,5 +1,7 @@
 package com.example.project.rest.api.controller;
 
+import java.util.ArrayList;
+
 import com.example.project.rest.api.model.Alternativa;
 import com.example.project.rest.api.repository.RepositoryAlternativa;
 
@@ -23,6 +25,17 @@ public class AlternativaController {
         return repository.findAll();
     }
 
+    @GetMapping(path = "/{cod_questao}")
+    public Alternativa acharQuestoes(@PathVariable(value = "cod_questao") int cod_questao) {
+        Iterable<Alternativa> questoesList;
+        questoesList = repository.findAll();
+
+        for(Alternativa a: questoesList){
+            a.getGod_questao_a() == (cod_questao);
+        }
+
+        return repository.findById(cod_questao);
+    }
     @GetMapping(path = "/{letra}")
     public Alternativa consultar(@PathVariable("letra") int letra){
       return repository.findById(letra);
