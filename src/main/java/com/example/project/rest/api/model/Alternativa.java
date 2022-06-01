@@ -41,7 +41,7 @@ public class Alternativa {
   public void setEh_correta(boolean eh_correta) {
     this.eh_correta = eh_correta;
   }
-  public int getGod_questao_a() {
+  public int getCod_questao_a() {
     return cod_questao_a;
   }
   public void setEh_correta(int cod_questao_a) {
