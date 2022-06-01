@@ -4,6 +4,7 @@ import com.example.project.rest.api.model.Aluno;
 import com.example.project.rest.api.repository.RepositoryAluno;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/api/aluno")
+@CrossOrigin
 public class AlunoController {
 
     @Autowired

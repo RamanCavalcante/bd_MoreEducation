@@ -6,6 +6,7 @@ import com.example.project.rest.api.model.Alternativa;
 import com.example.project.rest.api.repository.RepositoryAlternativa;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/api/alternativa")
+@CrossOrigin
 public class AlternativaController {
     
     @Autowired
