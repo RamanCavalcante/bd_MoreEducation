@@ -22,9 +22,12 @@ public class ProfessorController {
 
     @GetMapping(path = "api/professor/{matricula}")
     public ResponseEntity consultar(@PathVariable("matricula") int matricula){
+        System.out.println(repository);
+
         return repository.findById(matricula)
         .map(record -> ResponseEntity.ok().body(record))
         .orElse(ResponseEntity.notFound().build());
+        
 
     }
 
@@ -33,4 +36,9 @@ public class ProfessorController {
     public Professor salvar(@RequestBody Professor usuarioProfessor){
         return repository.save(usuarioProfessor);
     }
-} 
+
+    @GetMapping(path = "api/professor/turmasMinistradas")
+    public void consultarTurmas(Professor professor){
+    }
+}
+

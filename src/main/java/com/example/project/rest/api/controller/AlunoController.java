@@ -34,9 +34,19 @@ public class AlunoController {
         return repository.save(usuario);
     }
 
-    @GetMapping(path = "api/aluno/login/{matricula}/")
-    public void login(@PathVariable("matricula") int matricula, @PathVariable("senha") int senha){
-         
+    @GetMapping(path = "api/aluno/login")
+    public void login(@RequestBody Aluno usuario){
+        Aluno usuarioAluno = repository.findById(usuario.getMatricula()).get();
+
+        if(usuarioAluno.getSenha().equals(usuario.getSenha())){
+            System.out.println("Sucesso!!");
+        }else{
+            System.out.println("Acesso negado!!");
+        }
     }
+
+    
+         
+    
 
 }
