@@ -27,24 +27,44 @@ public class AlternativaController {
         return repository.findAll();
     }
 
-    @GetMapping(path = "/achar/{cod_questao}")
-    public ArrayList<Alternativa> acharQuestoes(@PathVariable(value = "cod_questao") int cod_questao) {
+    /*@GetMapping(path = "/achar/{letra}")
+    public ArrayList<Alternativa> acharQuestoes(@PathVariable(value = "letra") int letra) {
         ArrayList<Alternativa> alternativas_da_questao = new ArrayList<>();
         Iterable<Alternativa> questoesList;
         questoesList = repository.findAll();
 
         for(Alternativa a: questoesList){
 
-            if(a.getCod_questao_a() == cod_questao){
-                System.out.println(a.getCod_questao_a());
+            if(a.getLetra() == letra){
+                
+                alternativas_da_questao.add(a);
+            }
+        }
+        //repository.findById(cod_questao);
+        return alternativas_da_questao;
+    }*/
+
+    // Passa o código de uma questão e é retornado todas as alternativas
+    @GetMapping(path = "/achar/{cod_questao_a}")
+    public ArrayList<Alternativa> acharQuestoes1(@PathVariable(value = "cod_questao_a") int cod) {
+        ArrayList<Alternativa> alternativas_da_questao = new ArrayList<>();
+        Iterable<Alternativa> questoesList;
+        questoesList = repository.findAll();
+
+        for(Alternativa a: questoesList){
+
+            if(a.getQuestao().getId() == cod){
+                
                 alternativas_da_questao.add(a);
             }
         }
         //repository.findById(cod_questao);
         return alternativas_da_questao;
     }
+
+    
     @GetMapping(path = "/{letra}")
-    public Alternativa consultar(@PathVariable("letra") int letra){
+    public ArrayList<Alternativa> consultar(@PathVariable(value = "letra") int letra){
       return repository.findById(letra);
     }
 
