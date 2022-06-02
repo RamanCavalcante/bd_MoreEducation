@@ -21,6 +21,8 @@ public class TurmaController {
     
     @Autowired
     private RepositoryTurma repository;
+    
+    @Autowired
     private RepositoryAluno repositoryAluno;
 
     @GetMapping(path = "/all")
@@ -34,13 +36,13 @@ public class TurmaController {
         return repository.findById(id);
     }
 
-    @GetMapping(path = "/{id}")
-    public ArrayList<Aluno> consultarAlunosDaTurma(@PathVariable("id") int id){
+    @GetMapping(path = "/consultarAlunos/{idTurma}")
+    public ArrayList<Aluno> consultarAlunosDaTurma(@PathVariable("idTurma") int idTurma){
         
         Iterable<Aluno> alunoList = repositoryAluno.findAll();
         ArrayList<Aluno> listaDaTurma = new ArrayList<>();
 
-        Turma turma = repository.findById(id);
+        Turma turma = repository.findById(idTurma);
         for(Aluno a: alunoList){
             
             if(a.getId_turma()==turma.getId()){
@@ -48,7 +50,6 @@ public class TurmaController {
                 listaDaTurma.add(a);
             }
         }
-
         return listaDaTurma;
     }
 

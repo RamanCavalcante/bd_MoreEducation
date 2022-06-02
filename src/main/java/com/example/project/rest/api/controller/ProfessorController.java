@@ -24,6 +24,8 @@ public class ProfessorController {
     
     @Autowired
     private RepositoryProfessor repository;
+    
+    @Autowired
     private RepositoryTurma repositoryTurma; 
 
 
@@ -46,9 +48,7 @@ public class ProfessorController {
                 System.out.println(t.getMat_professor());
                 turmasDoProfessor.add(t);
             }
-        }
-        
-
+        }     
         return turmasDoProfessor;
     }
 
