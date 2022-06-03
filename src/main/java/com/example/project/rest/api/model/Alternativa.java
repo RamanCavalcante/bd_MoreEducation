@@ -30,8 +30,6 @@ public class Alternativa {
   @Column(nullable = false)
   private boolean eh_correta;
 
-  //@Column(nullable = false)
-  //private int cod_questao_a;
 
   /** 
      * gets e sets
