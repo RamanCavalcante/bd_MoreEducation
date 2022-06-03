@@ -10,7 +10,8 @@ import org.springframework.data.repository.CrudRepository;
 public interface RepositoryQuestao extends CrudRepository <Questao, Integer>{
     Questao findById(int id);
 
-    // @Query(value = "SELECT enunciado, resposta, letra, questoes.id FROM alternativas, questoes where cod_questao_a = questoes.id ", nativeQuery = true)
+    // @Query(value = "  ", nativeQuery = true)
     // List selectalternativasQuestao(int codQuestao);
+  
 
 }
