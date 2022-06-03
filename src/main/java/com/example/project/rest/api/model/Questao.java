@@ -7,10 +7,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+;
 
 @Entity(name = "questoes")
 public class Questao {
@@ -29,21 +30,7 @@ public class Questao {
     @OneToMany(mappedBy = "questao", fetch = FetchType.EAGER)
     private List<Alternativa> alternativas;
 
-    @JsonManagedReference
-    @ManyToMany(targetEntity=Avaliacao.class)
-    private List<Avaliacao> lista_de_avaliacoes;
 
-    
-
-    public Questao(int id, String enunciado, int mat_professor, List<Alternativa> alternativas,
-            List<Avaliacao> lista_de_avaliacoes) {
-        this.id = id;
-        this.enunciado = enunciado;
-        this.mat_professor = mat_professor;
-        this.alternativas = alternativas;
-        this.lista_de_avaliacoes = lista_de_avaliacoes;
-    }
-    
     public int getId() {
         return id;
     }
@@ -62,10 +49,5 @@ public class Questao {
     public void setMat_professor(int mat_professor) {
         this.mat_professor = mat_professor;
     }
-    public void setAlternativas(List<Alternativa> alternativas) {
-        this.alternativas = alternativas;
-    }
-    public List<Alternativa> getAlternativas() {
-        return alternativas;
-    }
+  
 }
