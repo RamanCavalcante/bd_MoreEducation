@@ -1,10 +1,15 @@
 package com.example.project.rest.api.model;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity(name = "questoes")
 public class Questao {
@@ -18,6 +23,10 @@ public class Questao {
 
     @Column(nullable = false)
     private int mat_professor;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "questao", fetch = FetchType.EAGER)
+    private List<Alternativa> alternativas;
 
     public int getId() {
         return id;
@@ -37,6 +46,10 @@ public class Questao {
     public void setMat_professor(int mat_professor) {
         this.mat_professor = mat_professor;
     }
-
-   
+    public void setAlternativas(List<Alternativa> alternativas) {
+        this.alternativas = alternativas;
+    }
+    public List<Alternativa> getAlternativas() {
+        return alternativas;
+    }
 }

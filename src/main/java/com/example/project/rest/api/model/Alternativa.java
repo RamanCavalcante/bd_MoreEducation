@@ -8,12 +8,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.example.project.rest.api.model.model_id.AlternativaId;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity(name = "alternativas")
 @IdClass(AlternativaId.class) // indica onde está a chave primária composta
 public class Alternativa {
 
   @Id
+  @JsonBackReference
   @ManyToOne // Indica que é um relacionamento muitos para 1 
   @JoinColumn(name = "cod_questao_a",referencedColumnName = "id")
   private Questao questao;

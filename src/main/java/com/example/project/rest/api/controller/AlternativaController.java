@@ -62,6 +62,23 @@ public class AlternativaController {
         return alternativas_da_questao;
     }
 
+    @GetMapping(path = "/achar2/{cod_questao_a}")
+    public ArrayList<Alternativa> acharQuestoes2(@PathVariable(value = "cod_questao_a") int cod) {
+        ArrayList<Alternativa> alternativas_da_questao = new ArrayList<>();
+        Iterable<Alternativa> questoesList;
+        questoesList = repository.findAll();
+
+        for(Alternativa a: questoesList){
+
+            if(a.getQuestao().getId() == cod){
+                
+                alternativas_da_questao.add(a);
+            }
+        }
+        //repository.findById(cod_questao);
+        return alternativas_da_questao;
+    }
+
     
     @GetMapping(path = "/{letra}")
     public ArrayList<Alternativa> consultar(@PathVariable(value = "letra") int letra){
@@ -69,7 +86,7 @@ public class AlternativaController {
     }
 
     @PostMapping(path = "/cadastrar", consumes = {"application/json"}) 
-    public Alternativa cadastrar(@RequestBody Alternativa alter){
-        return repository.save(alter);
+    public Iterable<Alternativa> cadastrar(@RequestBody Iterable<Alternativa> alter){
+        return repository.saveAll(alter);
     }
 } 
