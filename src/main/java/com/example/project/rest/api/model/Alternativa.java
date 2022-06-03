@@ -21,7 +21,6 @@ public class Alternativa {
   private Questao questao;
   
   @Id
-  //@Column(name = "letra")
   private int letra;
 
   @Column(nullable = false)
@@ -60,11 +59,4 @@ public class Alternativa {
     return questao;
   }
 
-  
-  /*public int getCod_questao_a() {
-    return cod_questao_a;
-  }
-  public void setEh_correta(int cod_questao_a) {
-    this.cod_questao_a = cod_questao_a;
-  }*/
 }

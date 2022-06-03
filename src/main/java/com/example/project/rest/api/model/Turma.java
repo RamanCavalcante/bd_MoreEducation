@@ -19,6 +19,8 @@ public class Turma {
     @Column(nullable = false, length = 10)
     public int mat_professor;
 
+    
+
     /**
      * gets e sets
      * 

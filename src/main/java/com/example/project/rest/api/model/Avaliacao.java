@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 
 @Entity(name = "avaliacoes")
@@ -19,15 +21,14 @@ public class Avaliacao {
     @Column(nullable = false)
     private int num_questoes;
 
-    @Column(nullable = false)
-    private int mat_professor;
-
+    @ManyToOne
+    @JoinColumn(name = "mat_professor",referencedColumnName = "matricula")
+    private Professor professor;
     
 
     public Avaliacao(){
         
     }
-
 
     public int getId() {
         return id;
@@ -45,12 +46,13 @@ public class Avaliacao {
         this.num_questoes = num_questoes;
     }
 
-    public int getMat_professor() {
-        return mat_professor;
+    public Professor getProfessor() {
+        return professor;
     }
 
-    public void setMat_professor(int mat_professor) {
-        this.mat_professor = mat_professor;
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
+
   
 }
