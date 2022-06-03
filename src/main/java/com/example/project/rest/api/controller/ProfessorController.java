@@ -34,7 +34,6 @@ public class ProfessorController {
         return repository.findAll();
     }
 
-
     
     @GetMapping(path = "/turmasMinistradas/{matricula}")
     public ArrayList<Turma> findTurmasMinistradas(@PathVariable(value = "matricula") int matricula){

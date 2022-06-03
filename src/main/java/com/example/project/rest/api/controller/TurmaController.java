@@ -1,6 +1,7 @@
 package com.example.project.rest.api.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.example.project.rest.api.model.Aluno;
 import com.example.project.rest.api.model.Turma;
@@ -8,6 +9,7 @@ import com.example.project.rest.api.repository.RepositoryAluno;
 import com.example.project.rest.api.repository.RepositoryTurma;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,5 +60,10 @@ public class TurmaController {
         return repository.save(saveTurma);
     }
 
+
+    @GetMapping(path = "/consultaTest/{matricula}")
+    public List<Turma> consutaTest(@PathVariable("matricula") int matricula){
+        return repository.selectAllTurmas(matricula);
+    }
 
 } 

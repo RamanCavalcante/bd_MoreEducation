@@ -5,6 +5,7 @@ import com.example.project.rest.api.repository.RepositoryAluno;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,5 +46,11 @@ public class AlunoController {
         }else{
             System.out.println("Acesso negado!!");
         }
+    }
+
+
+    @DeleteMapping(path = "/delete/{idaluno}")
+    public void deleteAluno(@PathVariable("idaluno") int idaluno){
+         repository.deleteById(idaluno);
     }
 }
