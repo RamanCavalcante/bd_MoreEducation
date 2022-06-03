@@ -1,23 +1,34 @@
 package com.example.project.rest.api.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity(name = "turmas")
 public class Turma {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int id;
+    private int id;
 
     @Column(nullable = false, length = 20)
-    public String nome;
+    private String nome;
     
     @Column(nullable = false, length = 10)
-    public int mat_professor;
+    private int mat_professor;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "turma", fetch = FetchType.EAGER)
+    private List<Aluno> alunos;
+
 
     /**
      * gets e sets
@@ -45,6 +56,5 @@ public class Turma {
 
     public void setMat_professor(int mat_professor) {
         this.mat_professor = mat_professor;
-    }
-       
+    } 
 }
