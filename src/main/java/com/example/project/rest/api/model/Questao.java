@@ -11,7 +11,6 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-;
 
 @Entity(name = "questoes")
 public class Questao {
@@ -29,7 +28,6 @@ public class Questao {
     @JsonManagedReference
     @OneToMany(mappedBy = "questao", fetch = FetchType.EAGER)
     private List<Alternativa> alternativas;
-
 
     public int getId() {
         return id;

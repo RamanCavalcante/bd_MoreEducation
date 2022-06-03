@@ -49,10 +49,10 @@ public class TurmaController {
         Turma turma = repository.findById(idTurma);
         for(Aluno a: alunoList){
             
-            if(a.getId_turma()==turma.getId()){
-                System.out.println(a.getId_turma());
-                listaDaTurma.add(a);
-            }
+            //if(Aluno.getTurma().getId()  == idTurma){
+                
+                //listaDaTurma.add(a);
+            //}
         }
         return listaDaTurma;
     }

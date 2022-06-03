@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+
 @Entity(name = "alunos")
 public class Aluno {
    
@@ -29,24 +30,29 @@ public class Aluno {
     @Column(nullable = false, length = 1)
     private byte acess;
 
+
     @Column(nullable = false)
     private int id_turma_a;
-
   
+    @ManyToOne
+    @JoinColumn(name = "id_turma_a",referencedColumnName = "id")
+    private Turma turma;
+
 
     /** 
      * gets e sets
      */
 
-    public int getId_turma() {
-        return id_turma_a;
-    }
-    public void setId_turma(int id_turma) {
-        this.id_turma_a = id_turma;
-    }
+    
 
     public String getNome() {
         return nome;
+    }
+    public Turma getTurma() {
+        return turma;
+    }
+    public void setTurma(Turma turma) {
+        this.turma = turma;
     }
     public int getMatricula() {
         return matricula;

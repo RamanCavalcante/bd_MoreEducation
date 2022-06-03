@@ -1,8 +1,15 @@
 package com.example.project.rest.api.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity(name = "professores")
 public class Professor {
@@ -18,8 +25,11 @@ public class Professor {
 
     @Column(nullable = false, length = 1)
     private byte acess = 1;
-    
 
+    @JsonManagedReference
+    @OneToMany(mappedBy = "professor", fetch = FetchType.EAGER)
+    private List<Avaliacao> avaliacoes;
+    
     public int getMatricula() {
         return matricula;
     }
