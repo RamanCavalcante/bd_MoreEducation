@@ -3,6 +3,8 @@ package com.example.project.rest.api.controller;
 import com.example.project.rest.api.model.Questao;
 import com.example.project.rest.api.repository.RepositoryQuestao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,5 +36,10 @@ public class QuestaoController {
     @PostMapping(path = "/cadastrar")
     public Questao cadastrar(@RequestBody Questao questao){
         return repository.save(questao);
+    }
+
+    @GetMapping(path = "/listarAlternativas/{codigo}")
+    public List listarAlternativas(@PathVariable("codigo") int codigo){
+        return repository.selectalternativasQuestao(codigo);
     }
 } 

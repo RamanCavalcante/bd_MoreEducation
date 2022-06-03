@@ -10,7 +10,7 @@ import org.springframework.data.repository.CrudRepository;
 public interface RepositoryTurma extends CrudRepository <Turma, Integer>{
     Turma findById(int id);
 
-    @Query(value = "SELECT * FROM turmas where mat_professor = :matricula", nativeQuery = true)
-    List<Turma> selectAllTurmas(int matricula);
+    @Query(value = "SELECT nome FROM alunos", nativeQuery = true)
+    List selectAllTurmas(int matricula);
 
 }
