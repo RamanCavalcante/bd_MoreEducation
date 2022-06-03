@@ -6,25 +6,38 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+
 @Entity(name = "alunos")
 public class Aluno {
    
+    // @Id
+    @JsonBackReference
+    @ManyToOne 
+    @JoinColumn(name = "id_turma_a",referencedColumnName = "id", insertable = false, updatable = false)
+    private Turma turma;
     
     @Column(nullable = false, length = 50)
-    public String nome;
+    private String nome;
 
     @Id
-    public int matricula;
+    private int matricula;
     
     @Column(nullable = false, length = 50)
-    public String senha;
+    private String senha;
 
     @Column(nullable = false, length = 1)
-    public byte acess;
+    private byte acess;
 
+
+    @Column(nullable = false)
+    private int id_turma_a;
+  
     @ManyToOne
     @JoinColumn(name = "id_turma_a",referencedColumnName = "id")
     private Turma turma;
+
 
     /** 
      * gets e sets
@@ -63,5 +76,11 @@ public class Aluno {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
+
+    // public Turma getTurma() {
+    //     return turma;
+    // }
+    // public void setTurma(Turma turma) {
+    //     this.turma = turma;
+    // }
 }
