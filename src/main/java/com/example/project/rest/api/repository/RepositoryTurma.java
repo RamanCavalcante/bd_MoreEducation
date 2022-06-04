@@ -13,4 +13,9 @@ public interface RepositoryTurma extends CrudRepository <Turma, Integer>{
     @Query(value = "SELECT nome FROM alunos", nativeQuery = true)
     List selectAllTurmas(int matricula);
 
+
+    @Query(value = "SELECT turmas.nome, COUNT(alunos.nome) FROM alunos, turmas GROUP BY turmas.id",
+    nativeQuery = true)
+    List listarQuantidadeAlunos();
+
 }

@@ -6,4 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface RepositoryProfessor extends CrudRepository <Professor, Integer>{
   Professor findById(int matricula);
+
 }
