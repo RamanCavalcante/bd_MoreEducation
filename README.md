@@ -1,5 +1,10 @@
 # bd_MoreEducation
 
-Scritp do Banco de dados
+Script do Banco de dados
 
 http://dontpad.com/ScriptBDMoreEducation
+
+Script insert values
+
+http://dontpad.com/insertValuesBDMoreEducation
+
