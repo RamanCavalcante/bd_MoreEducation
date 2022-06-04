@@ -1,5 +1,7 @@
 package com.example.project.rest.api.controller;
 
+import java.util.ArrayList;
+
 import com.example.project.rest.api.model.Aluno;
 import com.example.project.rest.api.repository.RepositoryAluno;
 
@@ -30,6 +32,22 @@ public class AlunoController {
     @GetMapping(path = "/{matricula}")
     public Aluno acharAluno(@PathVariable("matricula") int matricula){
         return repository.findById(matricula);
+    }
+
+    // Retorna quais alunos estão fazendo parte de uma determinada turma
+    @GetMapping(path = "alunosDaTurma/{id}")
+    public ArrayList<Aluno> alunosDaturma(@PathVariable("id") int idT){
+
+        
+        Iterable<Aluno> alunoList = repository.findAll();
+        ArrayList<Aluno> alunosDaturma = new ArrayList<>();
+        for(Aluno a : alunoList){
+            if(a.getTurma().getId() == idT){
+                alunosDaturma.add(a);
+                
+            }
+        }
+        return alunosDaturma;
     }
 
     @PostMapping(path = "/cadastrar")

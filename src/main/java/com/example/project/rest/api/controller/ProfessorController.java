@@ -51,6 +51,7 @@ public class ProfessorController {
         return turmasDoProfessor;
     }
 
+
     @GetMapping(path = "/{matricula}")
     public Professor acharProfessor(@PathVariable(value = "matricula") int matricula) {
         return repository.findById(matricula);

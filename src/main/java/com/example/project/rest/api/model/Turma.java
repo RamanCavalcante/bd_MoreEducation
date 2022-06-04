@@ -30,8 +30,6 @@ public class Turma {
     private List<Aluno> alunos;
 
 
-    
-
     /**
      * gets e sets
      * 
@@ -58,5 +56,23 @@ public class Turma {
 
     public void setMat_professor(int mat_professor) {
         this.mat_professor = mat_professor;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
     } 
+
+    
 }

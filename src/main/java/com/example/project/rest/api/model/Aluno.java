@@ -34,16 +34,10 @@ public class Aluno {
     @Column(nullable = false)
     private int id_turma_a;
   
-    @ManyToOne
-    @JoinColumn(name = "id_turma_a",referencedColumnName = "id")
-    private Turma turma;
-
-
+  
     /** 
      * gets e sets
      */
-
-    
 
     public String getNome() {
         return nome;

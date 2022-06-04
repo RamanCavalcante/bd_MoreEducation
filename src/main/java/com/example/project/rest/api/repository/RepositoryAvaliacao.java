@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface RepositoryAvaliacao extends CrudRepository <Avaliacao,Integer>  {
 
-    
+    Avaliacao findById(int id);
     
 }

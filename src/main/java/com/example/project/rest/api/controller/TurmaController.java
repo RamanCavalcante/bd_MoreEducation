@@ -40,21 +40,13 @@ public class TurmaController {
         return repository.findById(id);
     }
 
-    @GetMapping(path = "/consultarAlunos/{idTurma}")
-    public ArrayList<Aluno> consultarAlunosDaTurma(@PathVariable("idTurma") int idTurma){
+    // Forma de retornar os alunos de uma turma
+    @GetMapping(path = "/alunosDaTurma/{id}")
+    public List<Aluno> consultarAlunos(@PathVariable("id") int idTurma){
         
-        Iterable<Aluno> alunoList = repositoryAluno.findAll();
-        ArrayList<Aluno> listaDaTurma = new ArrayList<>();
-
         Turma turma = repository.findById(idTurma);
-        for(Aluno a: alunoList){
-            
-            //if(Aluno.getTurma().getId()  == idTurma){
-                
-                //listaDaTurma.add(a);
-            //}
-        }
-        return listaDaTurma;
+        return turma.getAlunos();
+
     }
 
     @PostMapping(path = "/cadastrar")
