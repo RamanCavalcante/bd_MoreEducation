@@ -2,4 +2,4 @@
 
 Scritp do Banco de dados
 
-dontpad.com/ScriptMoreEducation
+http://dontpad.com/ScriptBDMoreEducation
